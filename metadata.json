@@ -1,0 +1,8 @@
+{
+  "name": "Portfolio Projects",
+  "description": "A modern, cute, pastel-themed portfolio projects showcase for university students with Google Sites embed support and in-app content editor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

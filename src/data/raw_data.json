@@ -1,0 +1,25 @@
+
+{
+  "hero": {
+    "badgeText": "PORTFOLIO • PROJECTS",
+    "mainHeading": "My Projects",
+    "thaiSubheading": "ผลงานและประสบการณ์ของฉัน",
+    "description": "พื้นที่รวบรวมผลงานที่เกิดจากการเรียนรู้ การลงมือทำ และการพัฒนาทักษะของผม ทั้งในช่วงมัธยมศึกษาตอนปลายและระดับมหาวิทยาลัย",
+    "ownerName": "Phiraphat Khodsawat",
+    "ownerThaiName": "พีรพัฒน์ คชสวัสดิ์",
+    "ownerNickname": "First",
+    "ownerMajor": "Computer Education (คอมพิวเตอร์ศึกษา)",
+    "primaryButtonText": "ดูผลงานของฉัน",
+    "secondaryButtonText": "แก้ไขข้อมูล",
+    "heroImageUrl": ""
+  },
+  "categories": {
+    "allLabel": "ทั้งหมด",
+    "allLabelEn": "All Projects",
+    "highSchoolName": "ช่วงมัธยมศึกษาตอนปลาย",
+    "highSchoolEn": "High School Projects",
+    "universityName": "ช่วงระดับมหาวิทยาลัย",
+    "universityEn": "University Projects"
+  },
+  "projects": []
+}

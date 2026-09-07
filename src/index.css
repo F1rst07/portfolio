@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', 'Prompt', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom soft pastel scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDD5F3;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C8BCE8;
+}
+
+/* Dreamy Pastel Sky Theme (Inspired by Magical Cloud Sunset: Lavender, Sunset Pink, Baby Blue) */
+.pastel-bg-canvas {
+  background-color: #FAF5FF;
+  background-image: 
+    radial-gradient(at 10% 8%, rgba(196, 181, 253, 0.45) 0px, transparent 45%),
+    radial-gradient(at 50% 12%, rgba(251, 207, 232, 0.5) 0px, transparent 48%),
+    radial-gradient(at 90% 8%, rgba(186, 230, 253, 0.45) 0px, transparent 45%),
+    radial-gradient(at 20% 65%, rgba(243, 232, 255, 0.35) 0px, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(224, 242, 254, 0.35) 0px, transparent 50%),
+    linear-gradient(180deg, #F9F5FE 0%, #FFF7FA 30%, #F4F9FF 65%, #FAF7FE 100%);
+  background-attachment: fixed;
+}
+
+.pastel-banner-gradient {
+  background: linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 48%, #E0F2FE 100%);
+}
+
+.pastel-header-cloud {
+  background: linear-gradient(135deg, rgba(243, 238, 254, 0.92) 0%, rgba(253, 238, 248, 0.92) 48%, rgba(236, 245, 254, 0.92) 100%);
+  border: 1px solid rgba(220, 205, 246, 0.85);
+  backdrop-filter: blur(16px);
+}
+
+.pastel-card-subtle {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(225, 215, 244, 0.85);
+  box-shadow: 0 6px 22px -5px rgba(162, 148, 206, 0.1);
+}
+
+.pastel-card-subtle:hover {
+  box-shadow: 0 12px 28px -6px rgba(150, 130, 205, 0.16);
+  border-color: rgba(204, 188, 238, 0.95);
+}
+
+/* Cute Ribbon bar */
+.pastel-pink-ribbon {
+  background-color: #FCECF4;
+  color: #581C3F;
+  border-color: #F8B4D9;
+}
+
+/* Animated Dreamy Stardust RGB Light Flow & Aura Effects */
+@keyframes rgbFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rgb-light-bar {
+  background: linear-gradient(90deg, 
+    #A78BFA, #C084FC, #F472B6, #FBBF24, #F472B6, #38BDF8, #818CF8, #A78BFA
+  );
+  background-size: 250% 100%;
+  animation: rgbFlow 4s linear infinite;
+}
+
+.rgb-glow-bar {
+  background: linear-gradient(90deg, 
+    #A78BFA, #C084FC, #F472B6, #FBBF24, #F472B6, #38BDF8, #818CF8, #A78BFA
+  );
+  background-size: 250% 100%;
+  animation: rgbFlow 4s linear infinite;
+}
+
+.rgb-avatar-ring {
+  background: linear-gradient(135deg, 
+    #A78BFA, #F472B6, #FBBF24, #38BDF8, #C084FC, #A78BFA
+  );
+  background-size: 250% 250%;
+  animation: rgbFlow 3.5s ease infinite;
+}
+
+/* Continuous Seamless Silky Smooth Flow for Button (Twilight Sunset to Lavender Harmony) */
+@keyframes smoothButtonFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes subtlePulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 18px -2px rgba(124, 58, 237, 0.42), 0 2px 8px rgba(219, 39, 119, 0.28);
+  }
+  50% {
+    box-shadow: 0 6px 24px -1px rgba(219, 39, 119, 0.48), 0 2px 10px rgba(168, 85, 247, 0.35);
+  }
+}
+
+.rgb-button-flow {
+  background: linear-gradient(
+    135deg, 
+    #7C3AED 0%, 
+    #9333EA 22%, 
+    #C026D3 45%, 
+    #DB2777 68%, 
+    #7C3AED 100%
+  );
+  background: linear-gradient(
+    135deg in oklab, 
+    #7C3AED 0%, 
+    #9333EA 22%, 
+    #C026D3 45%, 
+    #DB2777 68%, 
+    #7C3AED 100%
+  );
+  background-size: 200% 200%;
+  animation: smoothButtonFlow 5s ease-in-out infinite, subtlePulseGlow 3.5s ease-in-out infinite;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.rgb-button-flow:hover {
+  animation-duration: 3.5s, 2s;
+  box-shadow: 0 6px 28px -2px rgba(219, 39, 119, 0.6), 0 3px 14px rgba(147, 51, 234, 0.45);
+}
+
+.pastel-blue-ribbon {
+  background-color: #E6F0FE;
+  color: #1A3C6B;
+  border-color: #BED8FC;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0.55;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-slide {
+  animation: fadeInSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Animated Dreamy Background Cloud Drift across Screen */
+@keyframes cloudDriftAcross {
+  0% {
+    transform: translate3d(-450px, 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(100vw + 450px), 0, 0);
+  }
+}
+
+@keyframes cloudDriftReverse {
+  0% {
+    transform: translate3d(calc(100vw + 450px), 0, 0);
+  }
+  100% {
+    transform: translate3d(-450px, 0, 0);
+  }
+}
+
+@keyframes cloudBobbingSubtle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.02);
+  }
+}
+
+@keyframes cloudBobbingGentle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 14px, 0) scale(0.98);
+  }
+}
+
+
+
