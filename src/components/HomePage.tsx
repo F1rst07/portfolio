@@ -31,6 +31,7 @@ interface HomePageProps {
   data: PortfolioData;
   onNavigateToProjects: (category?: 'all' | 'highschool' | 'university') => void;
   onShowToast: (text: string, type?: 'success' | 'error' | 'info') => void;
+  onScrollToContact?: () => void;
 }
 
 const FOCUS_AREA_METAS = [
@@ -338,6 +339,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   data,
   onNavigateToProjects,
   onShowToast,
+  onScrollToContact,
 }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [activeHsProjectIndex, setActiveHsProjectIndex] = useState(0);
@@ -367,9 +369,19 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   const scrollToContact = () => {
+    if (onScrollToContact) {
+      onScrollToContact();
+      return;
+    }
+    const container = document.getElementById('main-scroll-container');
     const el = document.getElementById('contact-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (container && el) {
+      const containerRect = container.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      container.scrollTo({
+        top: Math.max(0, container.scrollTop + (elRect.top - containerRect.top) - 20),
+        behavior: 'smooth'
+      });
     }
   };
 

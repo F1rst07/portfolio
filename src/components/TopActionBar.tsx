@@ -113,7 +113,7 @@ export const TopActionBar: React.FC<TopActionBarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-gradient-to-r from-[#F0EBFC]/90 via-[#FDF0F7]/92 to-[#EAF3FE]/90 backdrop-blur-2xl border-b border-[#DFCFF7]/80 shadow-[0_4px_24px_-4px_rgba(180,140,230,0.15)] transition-all">
+    <header className="shrink-0 sticky top-0 z-40 w-full bg-gradient-to-r from-[#F0EBFC]/90 via-[#FDF0F7]/92 to-[#EAF3FE]/90 backdrop-blur-2xl border-b border-[#DFCFF7]/80 shadow-[0_4px_24px_-4px_rgba(180,140,230,0.15)] transition-all">
       {/* Animated Dynamic RGB Light Stream Bar with Ambient Glow Effect (ไฟ RGB วิ่งขยับ) */}
       <div className="relative w-full h-[3px] overflow-visible">
         <div className="absolute inset-0 h-full w-full rgb-glow-bar" />

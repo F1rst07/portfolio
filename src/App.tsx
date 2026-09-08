@@ -133,11 +133,40 @@ export default function App() {
     }
   };
 
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects-gallery-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  // ล็อก window / document ไม่ให้เลื่อนเด็ดขาด (ป้องกัน Topbar หลุดตำแหน่งหรือขยับใน Google Sites iframe)
+  useEffect(() => {
+    const lockWindowScroll = () => {
+      if (window.scrollY !== 0 || window.scrollX !== 0) {
+        window.scrollTo(0, 0);
+      }
+    };
+    window.addEventListener('scroll', lockWindowScroll, { passive: true });
+    return () => window.removeEventListener('scroll', lockWindowScroll);
+  }, []);
+
+  // ฟังก์ชันเลื่อนจอไปยัง Element ภายใน main-scroll-container โดยตรง
+  // ไม่ใช้ el.scrollIntoView เพื่อป้องกันไม่ให้ window/iframe เลื่อน จน Topbar หลุดตำแหน่งหรือขยับ
+  const scrollToElementInContainer = (elementId: string, align: 'start' | 'center' = 'start', offset: number = 24) => {
+    const container = scrollContainerRef.current;
+    const target = document.getElementById(elementId);
+    if (!container || !target) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    let targetTop = container.scrollTop + (targetRect.top - containerRect.top) - offset;
+    if (align === 'center') {
+      targetTop = container.scrollTop + (targetRect.top - containerRect.top) - (container.clientHeight / 2) + (targetRect.height / 2);
     }
+
+    container.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: 'smooth'
+    });
+  };
+
+  const scrollToProjects = () => {
+    scrollToElementInContainer('projects-gallery-section', 'start', 20);
   };
 
   const scrollToTop = () => {
@@ -155,10 +184,7 @@ export default function App() {
       setPendingScrollToContact(true);
       setActiveTab('home');
     } else {
-      const el = document.getElementById('contact-section');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToElementInContainer('contact-section', 'start', 20);
     }
   };
 
@@ -173,7 +199,7 @@ export default function App() {
           clearInterval(interval);
           setPendingScrollToContact(false);
           setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            scrollToElementInContainer('contact-section', 'start', 20);
           }, 80);
         } else if (attempts > 30) {
           clearInterval(interval);
@@ -210,7 +236,7 @@ export default function App() {
           setTimeout(() => {
             const el = document.getElementById(`project-${project.id}`);
             if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              scrollToElementInContainer(`project-${project.id}`, 'center');
             } else {
               scrollToProjects();
             }
@@ -247,6 +273,7 @@ export default function App() {
                 data={data}
                 onNavigateToProjects={handleNavigateToProjects}
                 onShowToast={showToast}
+                onScrollToContact={handleScrollToContact}
               />
             </motion.div>
           ) : (
