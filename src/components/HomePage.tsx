@@ -253,12 +253,21 @@ const TrackImagePreview: React.FC<{
   totalSlides?: number;
   isAutoPlaying?: boolean;
 }> = ({ imageUrl, fallbackLocalUrl, alt, badgeTitle, theme, onClick, slideIndex, totalSlides, isAutoPlaying }) => {
-  const [currentSrc, setCurrentSrc] = useState<string>(() => formatImageUrl(imageUrl) || fallbackLocalUrl);
+  const resolvedInitialSrc = (imageUrl && imageUrl.startsWith('/images/')) 
+    ? imageUrl 
+    : (formatImageUrl(imageUrl) || fallbackLocalUrl);
+
+  const [currentSrc, setCurrentSrc] = useState<string>(() => resolvedInitialSrc);
   const [triedFallback, setTriedFallback] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
-    setCurrentSrc(formatImageUrl(imageUrl) || fallbackLocalUrl);
+    const src = (imageUrl && imageUrl.startsWith('/images/')) 
+      ? imageUrl 
+      : (formatImageUrl(imageUrl) || fallbackLocalUrl);
+    setCurrentSrc(src);
     setTriedFallback(false);
+    setImgLoaded(false);
   }, [imageUrl, fallbackLocalUrl]);
 
   const isUni = theme === 'uni';
@@ -283,21 +292,29 @@ const TrackImagePreview: React.FC<{
         isUni 
           ? 'border-[#BFDBFE] hover:border-[#60A5FA] shadow-[0_4px_20px_-4px_rgba(59,130,246,0.12)]' 
           : 'border-[#FBCFE8] hover:border-[#F472B6] shadow-[0_4px_20px_-4px_rgba(236,72,153,0.12)]'
-      } bg-slate-950 mb-5 group/img cursor-pointer transition-all duration-300 hover:shadow-lg`}
+      } bg-gradient-to-br from-[#F5F0FF] via-[#FDF2F8] to-[#EFF6FF] mb-5 group/img cursor-pointer transition-all duration-300 hover:shadow-lg`}
       title="คลิกเพื่อดูรายละเอียดผลงานในหน้านี้"
     >
+      {/* Soft Shimmer Skeleton while loading */}
+      {!imgLoaded && (
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse" />
+      )}
+
       <img 
         key={currentSrc}
         src={currentSrc} 
         alt={alt}
+        onLoad={() => setImgLoaded(true)}
         onError={handleError}
-        className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-all duration-700 ease-out animate-fade-in-slide"
+        className={`w-full h-full object-cover object-center group-hover/img:scale-105 transition-all duration-500 ease-out ${
+          imgLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         loading="lazy"
-        referrerPolicy="no-referrer"
+        decoding="async"
       />
 
-      {/* Cinematic subtle dark gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent pointer-events-none" />
+      {/* Cinematic subtle dark gradient for high-contrast text */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent pointer-events-none" />
       
       {/* Bottom Frosted Glass Overlay with Title & Action */}
       <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-3">
@@ -606,12 +623,14 @@ export const HomePage: React.FC<HomePageProps> = ({
                       </div>
                     </div>
 
-                    {/* GIF Showcase Graphic */}
+                    {/* High-Quality Optimized Showcase Graphic */}
                     <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square w-full shadow-inner border border-[#E0D3F7] bg-gradient-to-br from-[#FAF5FE] to-[#FCEEF6]">
                       <img 
-                        src="/images/hero-showcase.gif?v=20260907_2031" 
+                        src="/images/hero-showcase.jpg?v=20260909_02" 
                         alt="Portfolio Showcase" 
                         className="w-full h-full object-cover rounded-xl sm:rounded-2xl group-hover:scale-[1.015] transition-transform duration-500"
+                        loading="eager"
+                        decoding="async"
                       />
                     </div>
 

@@ -33,6 +33,16 @@
   background: #C8BCE8;
 }
 
+/* Mobile-friendly GPU optimized drop-shadow (disabled on mobile to prevent lag/choke in iframe) */
+@media (min-width: 640px) {
+  .cloud-drop-shadow {
+    filter: drop-shadow(0 10px 20px rgba(148, 163, 184, 0.10));
+  }
+  .corner-cloud-shadow {
+    filter: drop-shadow(0 12px 24px rgba(148, 163, 184, 0.10));
+  }
+}
+
 /* Dreamy Pastel Sky Theme (Inspired by Magical Cloud Sunset: Lavender, Sunset Pink, Baby Blue) */
 .pastel-bg-canvas {
   background-color: #FAF5FF;

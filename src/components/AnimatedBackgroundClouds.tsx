@@ -312,14 +312,13 @@ export const AnimatedBackgroundClouds: React.FC = () => {
       {/* ========================================================================= */}
       {/* 1. CONTINUOUS DRIFTING CLOUDS (14 ก้อน เมฆขาวบริสุทธิ์ จางละมุน นวลตา) */}
       {/* ========================================================================= */}
-      {driftingClouds.map((cloud) => (
+      {driftingClouds.map((cloud, idx) => (
         <div
           key={cloud.id}
-          className={`absolute left-0 ${cloud.widthClass}`}
+          className={`absolute left-0 ${cloud.widthClass} cloud-drop-shadow ${idx % 2 === 1 ? 'hidden sm:block' : ''}`}
           style={{
             top: cloud.top,
             opacity: cloud.opacity,
-            filter: 'drop-shadow(0 10px 20px rgba(148, 163, 184, 0.10))',
             animation: `${cloud.reverse ? 'cloudDriftReverse' : 'cloudDriftAcross'} ${cloud.duration} linear infinite`,
             animationDelay: cloud.delay,
             willChange: 'transform',
@@ -361,7 +360,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           scale: [1, 1.04, 0.97, 1],
         }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-14 -left-12 sm:-left-6 w-80 sm:w-[440px] drop-shadow-[0_12px_24px_rgba(148,163,184,0.10)] opacity-48"
+        className="absolute -top-14 -left-12 sm:-left-6 w-80 sm:w-[440px] corner-cloud-shadow opacity-48"
       >
         <svg viewBox="0 0 150 65" className="w-full h-auto">
           <use href="#cloud-shape-b" fill="url(#cloud-gradient-pure-white)" />
@@ -376,7 +375,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           scale: [1, 1.03, 0.98, 1],
         }}
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute -top-10 -right-16 sm:-right-8 w-80 sm:w-[460px] drop-shadow-[0_12px_24px_rgba(148,163,184,0.10)] opacity-45"
+        className="hidden sm:block absolute -top-10 -right-16 sm:-right-8 w-80 sm:w-[460px] corner-cloud-shadow opacity-45"
       >
         <svg viewBox="0 0 150 65" className="w-full h-auto">
           <use href="#cloud-shape-b" fill="url(#cloud-gradient-pure-white)" />
@@ -390,7 +389,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           y: [0, -25, 20, 0],
         }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-        className="absolute top-[40%] -left-16 sm:-left-8 w-72 sm:w-96 drop-shadow-[0_10px_20px_rgba(148,163,184,0.10)] opacity-42"
+        className="hidden sm:block absolute top-[40%] -left-16 sm:-left-8 w-72 sm:w-96 corner-cloud-shadow opacity-42"
       >
         <svg viewBox="0 0 125 55" className="w-full h-auto">
           <use href="#cloud-shape-a" fill="url(#cloud-gradient-pure-white)" />
@@ -404,7 +403,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           y: [0, 24, -20, 0],
         }}
         transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute top-[52%] -right-14 sm:-right-6 w-72 sm:w-[400px] drop-shadow-[0_10px_20px_rgba(148,163,184,0.10)] opacity-44"
+        className="hidden sm:block absolute top-[52%] -right-14 sm:-right-6 w-72 sm:w-[400px] corner-cloud-shadow opacity-44"
       >
         <svg viewBox="0 0 150 65" className="w-full h-auto">
           <use href="#cloud-shape-b" fill="url(#cloud-gradient-pure-white)" />
@@ -419,7 +418,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           scale: [1, 1.03, 0.98, 1],
         }}
         transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut', delay: 2.5 }}
-        className="absolute -bottom-8 -left-12 sm:-left-6 w-80 sm:w-[460px] drop-shadow-[0_12px_24px_rgba(148,163,184,0.10)] opacity-48"
+        className="absolute -bottom-8 -left-12 sm:-left-6 w-80 sm:w-[460px] corner-cloud-shadow opacity-48"
       >
         <svg viewBox="0 0 150 65" className="w-full h-auto">
           <use href="#cloud-shape-b" fill="url(#cloud-gradient-pure-white)" />
@@ -434,7 +433,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           scale: [1, 1.03, 0.98, 1],
         }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute -bottom-10 -right-14 sm:-right-6 w-88 sm:w-[480px] drop-shadow-[0_12px_24px_rgba(148,163,184,0.10)] opacity-45"
+        className="hidden sm:block absolute -bottom-10 -right-14 sm:-right-6 w-88 sm:w-[480px] corner-cloud-shadow opacity-45"
       >
         <svg viewBox="0 0 150 65" className="w-full h-auto">
           <use href="#cloud-shape-b" fill="url(#cloud-gradient-pure-white)" />
@@ -444,7 +443,7 @@ export const AnimatedBackgroundClouds: React.FC = () => {
       {/* ========================================================================= */}
       {/* 3. ELEGANT WHITE & SOFT GOLDEN SPARKLES (ประกายดาวสีขาวและทองนวล สบายตา) */}
       {/* ========================================================================= */}
-      {sparkles.map((sp) => (
+      {sparkles.map((sp, idx) => (
         <motion.div
           key={sp.id}
           animate={{
@@ -461,9 +460,8 @@ export const AnimatedBackgroundClouds: React.FC = () => {
           style={{
             top: sp.top,
             left: sp.left,
-            filter: `drop-shadow(0 0 4px ${sp.glowColor})`,
           }}
-          className={`absolute ${sp.color} ${sp.sizeClass} select-none font-sans font-medium`}
+          className={`absolute ${sp.color} ${sp.sizeClass} select-none font-sans font-medium ${idx > 3 ? 'hidden sm:block' : ''}`}
         >
           {sp.char}
         </motion.div>

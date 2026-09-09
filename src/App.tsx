@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Project,
@@ -15,9 +15,9 @@ import { HeroSection } from './components/HeroSection';
 import { CategoryFilter } from './components/CategoryFilter';
 import { ProjectCard } from './components/ProjectCard';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { EditModal } from './components/EditModal';
-import { GoogleSitesEmbedModal } from './components/GoogleSitesEmbedModal';
-import { ResetConfirmModal } from './components/ResetConfirmModal';
+const EditModal = lazy(() => import('./components/EditModal').then(m => ({ default: m.EditModal })));
+const GoogleSitesEmbedModal = lazy(() => import('./components/GoogleSitesEmbedModal').then(m => ({ default: m.GoogleSitesEmbedModal })));
+const ResetConfirmModal = lazy(() => import('./components/ResetConfirmModal').then(m => ({ default: m.ResetConfirmModal })));
 import { ToastContainer, ToastMessage } from './components/Toast';
 import { Footer } from './components/Footer';
 import { Sparkles, FolderSearch, ArrowUp } from 'lucide-react';
@@ -389,25 +389,33 @@ export default function App() {
         hasNext={selectedProjectIndex >= 0 && selectedProjectIndex < filteredProjects.length - 1}
       />
 
-      <EditModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        data={data}
-        onSave={handleSaveData}
-        onResetToDefault={handleResetData}
-      />
+      <Suspense fallback={null}>
+        {isEditModalOpen && (
+          <EditModal
+            isOpen={isEditModalOpen}
+            onClose={() => setIsEditModalOpen(false)}
+            data={data}
+            onSave={handleSaveData}
+            onResetToDefault={handleResetData}
+          />
+        )}
 
-      <GoogleSitesEmbedModal
-        isOpen={isEmbedModalOpen}
-        onClose={() => setIsEmbedModalOpen(false)}
-        onShowToast={showToast}
-      />
+        {isEmbedModalOpen && (
+          <GoogleSitesEmbedModal
+            isOpen={isEmbedModalOpen}
+            onClose={() => setIsEmbedModalOpen(false)}
+            onShowToast={showToast}
+          />
+        )}
 
-      <ResetConfirmModal
-        isOpen={isResetConfirmOpen}
-        onClose={() => setIsResetConfirmOpen(false)}
-        onConfirm={handleResetData}
-      />
+        {isResetConfirmOpen && (
+          <ResetConfirmModal
+            isOpen={isResetConfirmOpen}
+            onClose={() => setIsResetConfirmOpen(false)}
+            onConfirm={handleResetData}
+          />
+        )}
+      </Suspense>
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />

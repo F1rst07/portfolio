@@ -85,7 +85,7 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
         "การคิดเชิงคำนวณ",
         "การทำงานเป็นทีม"
       ],
-      imageUrl: "https://drive.google.com/file/d/1RG5i6Pn4LcftjG4LZnDTOZ1xUhd7zLBi/view?usp=sharing",
+      imageUrl: "/images/kid-tect.jpg",
       projectUrl: "https://drive.google.com/file/d/1efnDKq1L7CAF8zHfy9_fAp_C_2P328PT/view?usp=sharing",
       buttonText: "เปิดผลงาน"
     },
@@ -111,7 +111,7 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
         "เทคโนโลยีพลังงานแสงอาทิตย์",
         "การแก้ปัญหาเชิงวิศวกรรม"
       ],
-      imageUrl: "https://drive.google.com/file/d/1PzaYsdb3BMnhaQTdg7axP8VqDKzukgJP/view?usp=sharing",
+      imageUrl: "/images/smart-trash.jpg",
       projectUrl: "https://drive.google.com/file/d/1jPv5q3fjb0sRO3gUUCoIEcLPYF6cz1uZ/view?usp=sharing",
       buttonText: "เปิดผลงาน"
     },
@@ -136,7 +136,7 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
         "การออกแบบอุปกรณ์ช่วยเหลือผู้พิการ",
         "การแก้ปัญหาเชิงวิศวกรรม"
       ],
-      imageUrl: "https://drive.google.com/file/d/1xYfHpsGxO9BaMw1_vKPKzYEg_SzEq9Xr/view?usp=sharing",
+      imageUrl: "/images/prosthetic-arm.jpg",
       projectUrl: "https://drive.google.com/file/d/1Oqw6awgKxtOnJIqBqaleCht5ate9dr-l/view?usp=sharing",
       buttonText: "เปิดผลงาน"
     },
@@ -159,20 +159,20 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
         "HuskyLens AI",
         "Agricultural Tech"
       ],
-      imageUrl: "https://drive.google.com/file/d/1SoYwU2INDMaxAkA3UQluMaFF_TI5vclq/view?usp=sharing",
+      imageUrl: "/images/agricultural-robot.jpg",
       projectUrl: "https://drive.google.com/file/d/1KL6-2FtT_fH4lwOR8H-fc0W8XRSJu0Ay/view?usp=drive_link",
       buttonText: "เปิดผลงาน"
     }
   ]
 };
 
-export const LOCAL_STORAGE_KEY = 'phiraphat_portfolio_data_v16';
+export const LOCAL_STORAGE_KEY = 'phiraphat_portfolio_data_v17';
 export const EDIT_MODE_KEY = 'phiraphat_portfolio_edit_mode';
 
 export function loadPortfolioData(): PortfolioData {
   try {
     // Purge legacy cache keys to prevent stale data
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 16; i++) {
       try {
         localStorage.removeItem(`phiraphat_portfolio_data_v${i}`);
       } catch {
