@@ -623,15 +623,26 @@ export const HomePage: React.FC<HomePageProps> = ({
                       </div>
                     </div>
 
-                    {/* High-Quality Optimized Showcase Graphic */}
+                    {/* High-Quality Optimized Showcase Graphic with Hardware-Accelerated Looping */}
                     <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square w-full shadow-inner border border-[#E0D3F7] bg-gradient-to-br from-[#FAF5FE] to-[#FCEEF6]">
-                      <img 
-                        src="/images/hero-showcase.jpg?v=20260909_02" 
-                        alt="Portfolio Showcase" 
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster="/images/hero-showcase.jpg?v=20260909_03"
                         className="w-full h-full object-cover rounded-xl sm:rounded-2xl group-hover:scale-[1.015] transition-transform duration-500"
-                        loading="eager"
-                        decoding="async"
-                      />
+                        title="Phiraphat Portfolio Animation"
+                      >
+                        <source src="/images/hero-showcase.mp4?v=20260909_03" type="video/mp4" />
+                        <img 
+                          src="/images/hero-showcase.gif?v=20260909_03" 
+                          alt="Portfolio Showcase" 
+                          className="w-full h-full object-cover rounded-xl sm:rounded-2xl group-hover:scale-[1.015] transition-transform duration-500"
+                          loading="eager"
+                          decoding="async"
+                        />
+                      </video>
                     </div>
 
                     {/* Bottom Profile Summary - Authentic Information in English */}
